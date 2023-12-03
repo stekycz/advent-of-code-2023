@@ -1,0 +1,8 @@
+# Check for https://rushjs.io/pages/maintainer/enabling_prettier/#preparing-for-prettier when you want to change this 
+
+#-------------------------------------------------------------------------------------------------------------------
+# Prettier-specific overrides
+#-------------------------------------------------------------------------------------------------------------------
+
+# Package manager files
+pnpm-lock.yaml
