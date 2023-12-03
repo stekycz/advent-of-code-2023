@@ -3,7 +3,7 @@
   "scripts": {
     "build": "rm -rf ./dist && tsc",
     "check:prettier": "prettier --check .",
-    "eslint": "eslint '**/*.{ts,js}'",
+    "eslint": "eslint '**[!dist]/*.{ts,js}'",
     "lint-staged": "lint-staged",
     "prepare": "husky install",
     "prettier": "prettier --write ."
