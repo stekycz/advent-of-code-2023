@@ -34,3 +34,6 @@ jobs:
 
       - name: Prettier
         run: pnpm run check:prettier
+
+      - name: Tests
+        run: pnpm run test
