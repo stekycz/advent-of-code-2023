@@ -1,15 +1,10 @@
-import { createInterface } from 'node:readline/promises';
 import * as A from 'fp-ts/Array';
 import * as NEA from 'fp-ts/NonEmptyArray';
 import { pipe } from 'fp-ts/function';
+import { getInputLines } from '../reader';
 
 async function getResult(): Promise<number> {
-  const lines = [];
-  for await (const line of createInterface({
-    input: process.stdin,
-  })) {
-    lines.push(line);
-  }
+  const lines = await getInputLines();
 
   return pipe(
     lines,

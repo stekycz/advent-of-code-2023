@@ -1,8 +1,8 @@
-import { createInterface } from 'node:readline/promises';
 import * as A from 'fp-ts/Array';
 import * as NEA from 'fp-ts/NonEmptyArray';
 import * as Ord from 'fp-ts/Ord';
 import { pipe } from 'fp-ts/function';
+import { getInputLines } from '../reader';
 
 const translateTable: Record<string, string> = {
   one: '1',
@@ -23,12 +23,7 @@ const wordRegexes = pipe(
 const allRegexes = [/\d/g, ...wordRegexes];
 
 async function getResult(): Promise<number> {
-  const lines = [];
-  for await (const line of createInterface({
-    input: process.stdin,
-  })) {
-    lines.push(line);
-  }
+  const lines = await getInputLines();
 
   return pipe(
     lines,
