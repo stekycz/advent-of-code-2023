@@ -2,7 +2,7 @@ import * as A from 'fp-ts/Array';
 import * as NEA from 'fp-ts/NonEmptyArray';
 import * as Ord from 'fp-ts/Ord';
 import { pipe } from 'fp-ts/function';
-import { getInputLines } from '../reader';
+import { execute } from '../executor';
 
 const translateTable: Record<string, string> = {
   one: '1',
@@ -22,10 +22,8 @@ const wordRegexes = pipe(
 );
 const allRegexes = [/\d/g, ...wordRegexes];
 
-async function getResult(): Promise<number> {
-  const lines = await getInputLines();
-
-  return pipe(
+const getResult = (lines: string[]): number =>
+  pipe(
     lines,
     A.map((line): string[] =>
       pipe(
@@ -50,13 +48,5 @@ async function getResult(): Promise<number> {
     A.map((match) => Number.parseInt(match, 10)),
     A.reduce(0, (acc, value) => acc + value),
   );
-}
 
-getResult()
-  .then((result) => {
-    console.log(result);
-  })
-  .catch((error) => {
-    console.error(error);
-    process.exitCode = 1;
-  });
+execute(getResult);
